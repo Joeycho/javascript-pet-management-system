@@ -1,0 +1,37 @@
+#input_section{
+    position: absolute;
+    left: 0%;
+    top: 0%
+}
+#owner{
+    position: absolute;
+    left: 25%;
+    top: 10%
+}
+#pet{
+    position: absolute;
+    left: 0%;
+    top: 60%
+}
+#clinic{
+    position: absolute;
+    left: 75%;
+    top: 10%
+}
+
+#fetch_own{
+    position: absolute;
+    left: 25%;
+    top: 0%
+}
+
+#fetch_pet{
+    position: absolute;
+    left: 0%;
+    top: 50%
+}
+#fetch_clinic{
+    position: absolute;
+    left: 75%;
+    top: 0%
+}

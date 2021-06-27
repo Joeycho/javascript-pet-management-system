@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Javascript Pet Management</title>
+  </head>
+  <body>
+    <div id="root">
+            <div id="input_section">
+            <form id="add_own_form">
+            <label for="name">Name:</label>
+            <input id="name" type="text" name="owner[name]"></input>
+            <br></br>
+            <label for="email">Email:</label>
+            <input id="email" type="text" name="owner[email]"></input>
+            <input type="submit" value="Add Owner"></input>
+            </form>
+            <br></br><br></br>
+            <form id="add_clinic_form">
+                <label for="name">Name:</label>
+                <input id="name" type="text" name="clinic[name]"></input>
+                <br></br>
+                <label for="addr">Address:</label>
+                <input id="addr" type="text" name="clinic[addr]"></input>
+                <input type="submit" value="Add Clinic"></input>
+            </form>
+            <br></br><br></br>
+            <form id="add_pet_form">
+                <label for="name">Name:</label>
+                <input id="name" type="text" name="pet[name]"></input>
+                <br></br>
+                <label for="breed">Breed:</label>
+                <input id="breed" type="text" name="pet[breed]"></input>
+                <br></br>
+                <label for="desc">Description:</label>
+                <input id="desc" type="text" name="pet[desc]"></input>
+                <select id="owner_id" name="owner">
+                </select>
+                <select id="clinic_id" name="select_cli">
+                </select>
+                <input type="submit" value="Add Pet"></input>
+            </form>
+
+            </div>
+
+            <button id="fetch_own">Load Owners</button>
+            <div id="owner">   
+            </div>
+        
+            <button id="fetch_pet">Load Pets</button>
+            <div id="pet">
+            </div>
+            
+            
+                
+                   
+            
+
+
+            <button id="fetch_clinic">Load Clinics</button>
+            <div id="clinic">    
+            </div>
+    </div>
+  </body>
+  <script type="text/javascript" src="index.js"></script>
+</html>
