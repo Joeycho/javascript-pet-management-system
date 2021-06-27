@@ -6,6 +6,7 @@ There are three models, Owner, Pet and Clinic. They have relationship each other
 
 For example, pet belongs to Owner and Clinic. Owner could have many clinics through Pet. Likewise from Clinic.
 
+![javascript_backend](https://user-images.githubusercontent.com/29337166/123549950-763b4380-d76b-11eb-8161-0f51534d7f51.JPG)
 
 ## Instruction
 
