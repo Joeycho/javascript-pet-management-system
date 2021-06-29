@@ -1,7 +1,9 @@
 #input_section{
     position: absolute;
     left: 0%;
-    top: 0%
+    top: 0%;
+    border-style: solid;
+    border-color: blue;
 }
 #owner{
     position: absolute;
@@ -10,7 +12,7 @@
 }
 #pet{
     position: absolute;
-    left: 0%;
+    left: 25%;
     top: 60%
 }
 #clinic{
@@ -27,7 +29,7 @@
 
 #fetch_pet{
     position: absolute;
-    left: 0%;
+    left: 25%;
     top: 50%
 }
 #fetch_clinic{

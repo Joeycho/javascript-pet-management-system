@@ -1,4 +1,45 @@
+//import {Owner} from "frontend/classes/owner.js";
 document.getElementById("fetch_own").addEventListener("click", fetchOwners);
+
+class Owner{
+  constructor(){
+      this.name = "default";
+      this.email = "default"; 
+      this.count = 0;
+  }
+
+  increaseLike(count){
+      this.count+=1;
+      count.innerHTML="Likes: "+ this.count
+    }
+
+  render(){
+      let para = document.createElement('label')
+      document.getElementById("owner").appendChild(para)
+      debugger
+      let count = document.createElement('p')
+      para.innerHTML+="Name: "+ this.name
+      para.innerHTML+=" Email: "+ this.email
+      count.innerHTML="Likes: "+ this.count
+
+      
+      let deleteBtn = document.createElement('button')
+      deleteBtn.setAttribute("id",`delete_${this.id}`)
+      deleteBtn.innerHTML+="REMOVE"
+      deleteBtn.addEventListener("click", event=>{event.preventDefault(); deleteRequest("owner",parseInt(this.id))})
+
+      let likeBtn = document.createElement('button')
+      likeBtn.innerHTML+="LIKE"
+      likeBtn.addEventListener("click", event=>{event.preventDefault(); this.increaseLike(count)})
+      
+      //para.appendChild(count)
+      para.insertAdjacentElement("afterend",deleteBtn)
+      para.insertAdjacentElement("afterend",likeBtn)
+      para.insertAdjacentElement("afterend", count)
+  }
+
+}
+
 
 function fetchOwners() {
 
@@ -6,23 +47,24 @@ function fetchOwners() {
         return response.json()
       }).then(responseJSON => {
         document.getElementById("owner").innerHTML=""
-          
+        
         let owners = responseJSON.data.map(e=>{e.attributes["id"]=e.id;
-            let para = document.createElement('p')
-            para.innerHTML+="Name: "+ e.attributes.name
-            para.innerHTML+=" Email: "+ e.attributes.email 
-            document.getElementById("owner").appendChild(para)
-            let deleteBtn = document.createElement('button')
-            deleteBtn.setAttribute("id",`delete_${e.id}`)
-            deleteBtn.innerHTML+="REMOVE"
-            deleteBtn.addEventListener("click", event=>{event.preventDefault(); deleteRequest("owner",parseInt(e.id))})
-            para.appendChild(deleteBtn)
+        
+            let owner = new Owner();
+            
+            owner.name = e.attributes.name
+            owner.email = e.attributes.email
+            owner.id = e.id
+            owner.render()
+
             return e.attributes
         })
         let select_own = document.getElementById("owner_id")
+        select_own.innerHTML = ""
         select_own.innerHTML+=owners.map(owner => `<option value=${owner.id}>${owner.name}</option>`)
     })
 }
+
 
 document.getElementById("fetch_clinic").addEventListener("click", fetchClinics);
 
@@ -45,6 +87,7 @@ function fetchClinics() {
             return e.attributes
         })
         let select_clinic = document.getElementById("clinic_id")
+        select_clinic.innerHTML = ""
         select_clinic.innerHTML+=clinics.map(clinic => `<option value=${clinic.id}>${clinic.name}</option>`)
     })
 }
@@ -123,8 +166,8 @@ document.getElementById("add_pet_form").addEventListener("submit", (event)=> {ev
 
 
 function submitRequest(who, target){
-    switch(who){
-        case "owner":
+  switch(who){
+    case "owner":
 
         const owner ={
             name: target.name.value, 
@@ -159,25 +202,25 @@ function submitRequest(who, target){
             fetchClinics()
         })  
 
-        case "pet":
-            const pet ={
-                name: target.name.value, 
-                breed: target.breed.value,
-                desc: target.desc.value,
-                owner_id: target.owner_id.value,
-                clinic_id: target.clinic_id.value
-                }  
-            fetch('http://localhost:3005/pets',{
-                method: 'POST',
-                headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(pet),
-                }).then((res) => {
-            
-                console.log("Response: ", res)
-                fetchPets()
-            })  
+      case "pet":
+          const pet ={
+              name: target.name.value, 
+              breed: target.breed.value,
+              desc: target.desc.value,
+              owner_id: target.owner_id.value,
+              clinic_id: target.clinic_id.value
+              }  
+          fetch('http://localhost:3005/pets',{
+              method: 'POST',
+              headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(pet),
+              }).then((res) => {
+          
+              console.log("Response: ", res)
+              fetchPets()
+          })  
 
         default:
             return
